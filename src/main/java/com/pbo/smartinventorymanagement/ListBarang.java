@@ -8,10 +8,12 @@ package com.pbo.smartinventorymanagement;
  *
  * @author Yazid Yusuf
  */
+import java.sql.Connection;
+
 public class ListBarang extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ListBarang.class.getName());
-
+private final Connection conn = new Koneksi().connect();
     /**
      * Creates new form ListBarang
      */
