@@ -6,6 +6,7 @@ com\pbo\smartinventorymanagement\BarangKeluar$1.class
 com\pbo\smartinventorymanagement\Dashboard.class
 com\pbo\smartinventorymanagement\BarangATK.class
 com\pbo\smartinventorymanagement\ListPengguna.class
+com\pbo\smartinventorymanagement\Koneksi.class
 com\pbo\smartinventorymanagement\ListKategori.class
 com\pbo\smartinventorymanagement\BarangElektronik.class
 com\pbo\smartinventorymanagement\ListPengguna$1.class
