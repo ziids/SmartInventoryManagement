@@ -86,10 +86,12 @@ public class ListBarang extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jTextField1.setName(""); // NOI18N
+        jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Kategori --", "BARANG 1", "BARANG 2", "BARANG 3", "BARANG 4", " " }));
 
         jButton1.setText("Search");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jLabel4.setText("Nama Barang");
 
@@ -308,6 +310,15 @@ public class ListBarang extends javax.swing.JFrame {
         load_table();
         clear_input();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        // search
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
