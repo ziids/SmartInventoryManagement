@@ -1,5 +1,8 @@
 com\pbo\smartinventorymanagement\ListBarang.class
-com\pbo\smartinventorymanagement\ListPengguna$1.class
-com\pbo\smartinventorymanagement\ListPengguna.class
 com\pbo\smartinventorymanagement\ListBarang$1.class
 com\pbo\smartinventorymanagement\SmartInventoryManagement.class
+com\pbo\smartinventorymanagement\BarangElektronik.class
+com\pbo\smartinventorymanagement\ListPengguna$1.class
+com\pbo\smartinventorymanagement\BarangATK.class
+com\pbo\smartinventorymanagement\ListPengguna.class
+com\pbo\smartinventorymanagement\Barang.class

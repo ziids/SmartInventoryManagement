@@ -18,6 +18,13 @@ public class SmartInventoryManagement extends javax.swing.JFrame {
     public SmartInventoryManagement() {
         initComponents();
     }
+    // Koneksi database
+private java.sql.Connection getConnection() throws Exception {
+    String url = "jdbc:mysql://localhost:3306/smartinventorymanagement";
+    String user = "root";
+    String password = "";
+    return java.sql.DriverManager.getConnection(url, user, password);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,6 +46,7 @@ public class SmartInventoryManagement extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("LOGIN");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("SMART INVENTORY MANAGEMENT");
@@ -50,6 +58,7 @@ public class SmartInventoryManagement extends javax.swing.JFrame {
         jLabel3.setText("Password");
 
         jButton2.setText("QUIT");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,6 +107,60 @@ public class SmartInventoryManagement extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    String email = jTextField1.getText();
+    String password = new String(jPasswordField1.getPassword());
+
+    if (email.isEmpty() || password.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Email dan Password tidak boleh kosong!",
+            "Peringatan",
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    try {
+        java.sql.Connection conn = getConnection();
+        String query = "SELECT * FROM pengguna WHERE email = ? AND password = ?";
+        java.sql.PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, email);
+        ps.setString(2, password);
+        java.sql.ResultSet rs = ps.executeQuery();
+
+if (rs.next()) {
+    String role = rs.getString("role");
+    
+    if (role.equals("admin")) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Login berhasil sebagai Admin!",
+            "Sukses",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        new ListBarang().setVisible(true);
+        this.dispose();
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Login berhasil sebagai User!",
+            "Sukses",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        new ListBarang().setVisible(true);
+        this.dispose();
+    }
+}
+        conn.close();
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Koneksi database gagal: " + e.getMessage(),
+            "Error",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
