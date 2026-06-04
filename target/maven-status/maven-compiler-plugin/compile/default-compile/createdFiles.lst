@@ -2,13 +2,6 @@ com\pbo\smartinventorymanagement\ListKategori.class
 com\pbo\smartinventorymanagement\ListBarang.class
 com\pbo\smartinventorymanagement\ListBarang$1.class
 com\pbo\smartinventorymanagement\SmartInventoryManagement.class
-<<<<<<< HEAD
-com\pbo\smartinventorymanagement\BarangElektronik.class
-com\pbo\smartinventorymanagement\ListPengguna$1.class
-com\pbo\smartinventorymanagement\BarangATK.class
-com\pbo\smartinventorymanagement\ListPengguna.class
-com\pbo\smartinventorymanagement\Barang.class
-=======
 com\pbo\smartinventorymanagement\BarangMasuk.class
 com\pbo\smartinventorymanagement\BarangKeluar$1.class
 com\pbo\smartinventorymanagement\ListPengguna$1.class
@@ -17,4 +10,3 @@ com\pbo\smartinventorymanagement\ListKategori$1.class
 com\pbo\smartinventorymanagement\BarangKeluar.class
 com\pbo\smartinventorymanagement\ListPengguna.class
 com\pbo\smartinventorymanagement\Databases\DatabaseConnection.class
->>>>>>> main
