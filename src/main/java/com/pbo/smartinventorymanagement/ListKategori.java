@@ -34,6 +34,24 @@ public class ListKategori extends javax.swing.JFrame {
         this.nama = nama;
         this.email = email;
         this.role = role;
+        
+        checkRole(role);
+    }
+    
+    private void checkRole(String role) {
+        if (role.equalsIgnoreCase("Admin")) {
+            jButton2.setEnabled(true);
+            jButton3.setEnabled(true);
+            jButton4.setEnabled(true);
+        } else if (role.equalsIgnoreCase("Staff")) {
+            jButton2.setEnabled(false);
+            jButton3.setEnabled(false);
+            jButton4.setEnabled(false);
+        } else {
+            jButton2.setEnabled(false);
+            jButton3.setEnabled(false);
+            jButton4.setEnabled(false);
+        }
     }
 
     /**
