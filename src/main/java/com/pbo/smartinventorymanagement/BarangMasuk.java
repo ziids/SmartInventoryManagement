@@ -22,6 +22,9 @@ import java.io.IOException;
  * @author Yazid Yusuf
  */
 public class BarangMasuk extends javax.swing.JFrame {
+    private String nama;
+    private String email;
+    private String role;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(BarangMasuk.class.getName());
 
@@ -31,6 +34,35 @@ public class BarangMasuk extends javax.swing.JFrame {
     public BarangMasuk() {
         initComponents();
         load_table();
+        set_barang();
+    }
+    
+    public BarangMasuk(String nama, String email, String role) {
+        initComponents();
+        load_table();
+        set_barang();
+        
+        this.nama = nama;
+        this.email = email;
+        this.role = role;
+        
+        checkRole(role);
+    }
+    
+    private void checkRole(String role) {
+        if (role.equalsIgnoreCase("Admin")) {
+            jButton2.setEnabled(true);
+            jButton3.setEnabled(true);
+            jButton8.setEnabled(true);
+        } else if (role.equalsIgnoreCase("Staff")) {
+            jButton2.setEnabled(true);
+            jButton3.setEnabled(false);
+            jButton8.setEnabled(true);
+        } else {
+            jButton2.setEnabled(true);
+            jButton3.setEnabled(false);
+            jButton8.setEnabled(false);
+        }
     }
 
     /**
@@ -46,20 +78,17 @@ public class BarangMasuk extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jSpinner1 = new javax.swing.JSpinner();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,13 +96,11 @@ public class BarangMasuk extends javax.swing.JFrame {
         jLabel1.setText("SMART INVENTORY MANAGEMENT");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("- BARANG KELUAR -");
+        jLabel7.setText("- BARANG MASUK -");
 
         jLabel8.setText("ID");
 
-        jLabel4.setText("Nama Barang");
-
-        jLabel5.setText("Kategori");
+        jLabel4.setText("Barang");
 
         jLabel6.setText("Kuantitas");
 
@@ -90,10 +117,6 @@ public class BarangMasuk extends javax.swing.JFrame {
 
         jButton5.setText("Clear");
         jButton5.addActionListener(this::jButton5ActionPerformed);
-
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton6.setText("Logout");
-        jButton6.addActionListener(this::jButton6ActionPerformed);
 
         jButton7.setText("Dashboard");
         jButton7.addActionListener(this::jButton7ActionPerformed);
@@ -122,46 +145,48 @@ public class BarangMasuk extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jButton2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jButton3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jButton8))
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButton3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButton8)
+                                        .addGap(108, 108, 108))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(62, 62, 62)
+                                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7))))
-                .addGap(39, 39, 39))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton7))
+                        .addGap(39, 39, 39))))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(163, 163, 163))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(248, 248, 248))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(240, 240, 240)
+                        .addComponent(jLabel7)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,23 +205,18 @@ public class BarangMasuk extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
+                    .addComponent(jButton7)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jButton7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton8))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -206,36 +226,49 @@ public class BarangMasuk extends javax.swing.JFrame {
         int baris = jTable1.rowAtPoint(evt.getPoint());
         
         jTextField4.setText(jTable1.getValueAt(baris, 1).toString());
-        jTextField2.setText(jTable1.getValueAt(baris, 2).toString());
-        jTextField3.setText(jTable1.getValueAt(baris, 3).toString());
+        jComboBox2.setSelectedItem(jTable1.getValueAt(baris, 2).toString());
         jSpinner1.setValue(Integer.parseInt(jTable1.getValueAt(baris, 4).toString()));
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            String namaBarang = jTextField2.getText();
+            String namaBarang = jComboBox2.getSelectedItem().toString();
             int kuantitas = (Integer) jSpinner1.getValue();
-            
+
             java.sql.Connection conn = DatabaseConnection.configDB();
-            java.sql.Statement stm = conn.createStatement();
-            java.sql.ResultSet res = stm.executeQuery("SELECT id FROM barang WHERE nama='" + namaBarang + "'");
-        
-            int barangId = 0;
+
+            String sqlGet = "SELECT id FROM barang WHERE nama=?";
+            java.sql.PreparedStatement psGet = conn.prepareStatement(sqlGet);
+            psGet.setString(1, namaBarang);
+            java.sql.ResultSet res = psGet.executeQuery();
+
+            int barangId;
+
             if (res.next()) {
                 barangId = res.getInt("id");
             } else {
                 JOptionPane.showMessageDialog(null, "Barang tidak ditemukan.");
                 return;
             }
-            
-            String sql = "INSERT INTO barang_keluar VALUES (NULL, '" + barangId + "', '" + kuantitas + "', NOW(), NOW())";
-            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-            pst.execute();
-            
-            JOptionPane.showMessageDialog(null, "Data Berhasil di Simpan");
+
+            String sqlInsert = "INSERT INTO barang_masuk (barang_id, kuantitas, created_at, updated_at) VALUES (?, ?, NOW(), NOW())";
+            java.sql.PreparedStatement psInsert = conn.prepareStatement(sqlInsert);
+            psInsert.setInt(1, barangId);
+            psInsert.setInt(2, kuantitas);
+            psInsert.executeUpdate();
+
+            String sqlUpdate = "UPDATE barang SET stok = stok + ? WHERE id = ?";
+            java.sql.PreparedStatement psUpdate = conn.prepareStatement(sqlUpdate);
+            psUpdate.setInt(1, kuantitas);
+            psUpdate.setInt(2, barangId);
+            psUpdate.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Penambahan Data Gagal: " + e.getMessage());
         }
+
         load_table();
         clear_input();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -243,49 +276,94 @@ public class BarangMasuk extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             String id = jTextField4.getText();
-            String namaBarang = jTextField2.getText();
-            int kuantitas = (Integer) jSpinner1.getValue();
+            String namaBarang = jComboBox2.getSelectedItem().toString();
+            int kuantitasBaru = (Integer) jSpinner1.getValue();
 
             java.sql.Connection conn = DatabaseConnection.configDB();
-            java.sql.Statement stm = conn.createStatement();
-            java.sql.ResultSet res = stm.executeQuery("SELECT id FROM barang WHERE nama='" + namaBarang + "'");
 
-            int barangId = 0;
-            if (res.next()) {
-                barangId = res.getInt("id");
+            String sqlGetBarang = "SELECT id FROM barang WHERE nama=?";
+            java.sql.PreparedStatement psBarang = conn.prepareStatement(sqlGetBarang);
+            psBarang.setString(1, namaBarang);
+            java.sql.ResultSet resBarang = psBarang.executeQuery();
+
+            int barangId;
+            if (resBarang.next()) {
+                barangId = resBarang.getInt("id");
             } else {
                 JOptionPane.showMessageDialog(null, "Barang tidak ditemukan!");
                 return;
-            }   
+            }
 
-            String sql = "UPDATE barang_keluar SET barang_id='" + barangId + "', kuantitas='" + kuantitas + "', updated_at=NOW() WHERE id='" + id + "'";
-            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-            pst.execute();
+            String sqlOld = "SELECT kuantitas, barang_id FROM barang_masuk WHERE id=?";
+            java.sql.PreparedStatement psOld = conn.prepareStatement(sqlOld);
+            psOld.setInt(1, Integer.parseInt(id));
+            java.sql.ResultSet resOld = psOld.executeQuery();
 
-            JOptionPane.showMessageDialog(null, "Data Berhasil di Edit!");
+            int kuantitasLama = 0;
+            int barangIdLama = 0;
+
+            if (resOld.next()) {
+                kuantitasLama = resOld.getInt("kuantitas");
+                barangIdLama = resOld.getInt("barang_id");
+            }
+
+            String sqlUpdateMasuk = "UPDATE barang_masuk SET barang_id=?, kuantitas=?, updated_at=NOW() WHERE id=?";
+            java.sql.PreparedStatement psUpdateMasuk = conn.prepareStatement(sqlUpdateMasuk);
+            psUpdateMasuk.setInt(1, barangId);
+            psUpdateMasuk.setInt(2, kuantitasBaru);
+            psUpdateMasuk.setInt(3, Integer.parseInt(id));
+            psUpdateMasuk.executeUpdate();
+
+            int selisih = kuantitasBaru - kuantitasLama;
+
+            String sqlUpdateBarang = "UPDATE barang SET stok = stok + ? WHERE id = ?";
+            java.sql.PreparedStatement psUpdateBarang = conn.prepareStatement(sqlUpdateBarang);
+            psUpdateBarang.setInt(1, selisih);
+            psUpdateBarang.setInt(2, barangId);
+            psUpdateBarang.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Data barang masuk berhasil diupdate!");
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Gagal update: " + e.getMessage());
         }
+
         load_table();
         clear_input();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        clear_input();
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        new Dashboard(nama, email, role).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         exportToExcel();
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void set_barang() {
+        try {
+            String sql = "SELECT * FROM barang";
+        
+            java.sql.Connection conn = DatabaseConnection.configDB();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            
+            jComboBox2.addItem("-- Pilih Barang --");
+            while(res.next()) {
+                jComboBox2.addItem(res.getString(2));
+            }
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal Mengambil Data: " + e.getMessage());
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -323,46 +401,58 @@ public class BarangMasuk extends javax.swing.JFrame {
     
     private void clear_input() {
         jTextField4.setText(null);
-        jTextField2.setText(null);
-        jTextField3.setText(null);
+        jComboBox2.setSelectedIndex(0);
         jSpinner1.setValue(0);
     }
     
     private void load_table() {
         DefaultTableModel model = new DefaultTableModel();
+
         model.addColumn("No");
         model.addColumn("ID");
-        model.addColumn("Nama");
+        model.addColumn("Barang");
         model.addColumn("Kategori");
-        model.addColumn("Stok");
+        model.addColumn("Kuantitas");
         model.addColumn("Dibuat");
         model.addColumn("Diperbarui");
-        
+
         try {
             int no = 1;
-            String sql = "SELECT barang.id, barang.nama, kategori.nama AS kategori, barang.stok, barang.created_at, barang.updated_at FROM barang INNER JOIN kategori ON barang.kategori_id = kategori.id";
+
+            String sql = 
+                "SELECT bm.id, b.nama AS barang, k.nama AS kategori, " +
+                "bm.kuantitas, bm.created_at, bm.updated_at " +
+                "FROM barang_masuk bm " +
+                "JOIN barang b ON bm.barang_id = b.id " +
+                "JOIN kategori k ON b.kategori_id = k.id";
+
             java.sql.Connection conn = DatabaseConnection.configDB();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
-            while(res.next()) {
+
+            while (res.next()) {
                 model.addRow(new Object[]{
                     no++,
-                    res.getString(1),
-                    res.getString(2),
-                    res.getString(3),
-                    res.getString(4),
-                    res.getString(5),
-                    res.getString(6)
+                    res.getInt("id"),
+                    res.getString("barang"),
+                    res.getString("kategori"),
+                    res.getInt("kuantitas"),
+                    res.getString("created_at"),
+                    res.getString("updated_at")
                 });
             }
+
             jTable1.setModel(model);
-        } catch(Exception e) {}
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Gagal load data: " + e.getMessage());
+        }
     }
     
     private void exportToExcel() {
         try {
             Workbook workbook = new XSSFWorkbook();
-            Sheet sheet = workbook.createSheet("Data Barang Keluar");
+            Sheet sheet = workbook.createSheet("Data Barang Masuk");
 
             TableModel model = jTable1.getModel();
             Row headerRow = sheet.createRow(0);
@@ -382,7 +472,7 @@ public class BarangMasuk extends javax.swing.JFrame {
             }
 
             JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setSelectedFile(new File("data_barang_keluar.xlsx")); 
+            fileChooser.setSelectedFile(new File("data_barang_masuk.xlsx")); 
 
             int option = fileChooser.showSaveDialog(null);
 
@@ -394,7 +484,7 @@ public class BarangMasuk extends javax.swing.JFrame {
                 out.close();
                 workbook.close();
 
-                JOptionPane.showMessageDialog(null, "Export laporan barang keluar berhasil!");
+                JOptionPane.showMessageDialog(null, "Export laporan barang masuk berhasil!");
             }
 
         } catch (IOException e) {
@@ -406,20 +496,17 @@ public class BarangMasuk extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

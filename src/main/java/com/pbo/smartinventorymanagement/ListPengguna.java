@@ -13,6 +13,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Yazid Yusuf
  */
 public class ListPengguna extends javax.swing.JFrame {
+    private String nama;
+    private String email;
+    private String role;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ListPengguna.class.getName());
 
@@ -22,6 +25,33 @@ public class ListPengguna extends javax.swing.JFrame {
     public ListPengguna() {
         initComponents();
         load_table();
+    }
+    
+    public ListPengguna(String nama, String email, String role) {
+        initComponents();
+        load_table();
+        
+        this.nama = nama;
+        this.email = email;
+        this.role = role;
+        
+        checkRole(role);
+    }
+    
+    private void checkRole(String role) {
+        if (role.equalsIgnoreCase("Admin")) {
+            jButton2.setEnabled(true);
+            jButton3.setEnabled(true);
+            jButton4.setEnabled(true);
+        } else if (role.equalsIgnoreCase("Staff")) {
+            jButton2.setEnabled(false);
+            jButton3.setEnabled(false);
+            jButton4.setEnabled(false);
+        } else {
+            jButton2.setEnabled(false);
+            jButton3.setEnabled(false);
+            jButton4.setEnabled(false);
+        }
     }
 
     /**
@@ -47,11 +77,12 @@ public class ListPengguna extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -98,9 +129,6 @@ public class ListPengguna extends javax.swing.JFrame {
 
         jLabel6.setText("ID");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Logout");
-
         jButton6.setText("Dashboard");
         jButton6.addActionListener(this::jButton6ActionPerformed);
 
@@ -110,6 +138,8 @@ public class ListPengguna extends javax.swing.JFrame {
         jLabel7.setText("Role");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier", "Staff", "Admin" }));
+
+        jLabel9.setText("Nama");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,29 +151,33 @@ public class ListPengguna extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel9)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4))
-                            .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jButton2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButton3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButton4))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jTextField5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButton6))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
                 .addGap(144, 144, 144)
@@ -172,14 +206,18 @@ public class ListPengguna extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jButton6))))
+                            .addComponent(jButton6)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
@@ -200,13 +238,16 @@ public class ListPengguna extends javax.swing.JFrame {
         String id = jTable1.getValueAt(baris, 1).toString();
         jTextField4.setText(id);
         
-        String email = jTable1.getValueAt(baris, 2).toString();
+        String nama = jTable1.getValueAt(baris, 2).toString();
+        jTextField5.setText(nama);
+        
+        String email = jTable1.getValueAt(baris, 3).toString();
         jTextField2.setText(email);
         
-        String role = jTable1.getValueAt(baris, 3).toString();
+        String role = jTable1.getValueAt(baris, 4).toString();
         jComboBox2.setSelectedItem(role);
         
-        String password = jTable1.getValueAt(baris, 4).toString();
+        String password = jTable1.getValueAt(baris, 5).toString();
         jTextField3.setText(password);
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -220,11 +261,12 @@ public class ListPengguna extends javax.swing.JFrame {
         try {
             java.sql.Connection conn = DatabaseConnection.configDB();
             
+            String nama = jTextField5.getText();
             String email = jTextField2.getText();
             String role = jComboBox2.getSelectedItem().toString();
             String password = jTextField3.getText();
 
-            String sql = "INSERT INTO pengguna VALUES (NULL, '" + email + "', '" + role + "', '" + password + "', NOW())";
+            String sql = "INSERT INTO pengguna VALUES (NULL, '" + nama + "', '" + email + "', '" + role + "', '" + password + "', NOW())";
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             pst.execute();
 
@@ -243,11 +285,12 @@ public class ListPengguna extends javax.swing.JFrame {
             java.sql.Connection conn = DatabaseConnection.configDB();
             
             String id = jTextField4.getText();
+            String nama = jTextField5.getText();
             String email = jTextField2.getText();
             String role = jComboBox2.getSelectedItem().toString();
             String password = jTextField3.getText();
 
-            String sql = "UPDATE pengguna SET " + "email='" + email + "', " + "role='" + role + "', " + "password='" + password + "'" + "WHERE id='" + id + "'";
+            String sql = "UPDATE pengguna SET " + "nama='" + nama + "', " + "email='" + email + "', " + "role='" + role + "', " + "password='" + password + "'" + "WHERE id='" + id + "'";
 
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             pst.execute();
@@ -280,11 +323,12 @@ public class ListPengguna extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        new Dashboard().setVisible(true);
+        new Dashboard(nama, email, role).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void clear_input() {
+        jTextField5.setText(null);
         jTextField4.setText(null);
         jTextField2.setText(null);
         jComboBox2.setSelectedIndex(0);
@@ -295,6 +339,7 @@ public class ListPengguna extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("No");
         model.addColumn("ID");
+        model.addColumn("Nama");
         model.addColumn("Email");
         model.addColumn("Role");
         model.addColumn("Password");
@@ -313,7 +358,8 @@ public class ListPengguna extends javax.swing.JFrame {
                     res.getString(2),
                     res.getString(3),
                     res.getString(4),
-                    res.getString(5)
+                    res.getString(5),
+                    res.getString(6)
                 });
             }
             jTable1.setModel(model);
@@ -346,7 +392,6 @@ public class ListPengguna extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -359,11 +404,13 @@ public class ListPengguna extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

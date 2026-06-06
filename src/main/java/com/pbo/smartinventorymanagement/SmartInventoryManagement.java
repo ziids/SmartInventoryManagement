@@ -4,6 +4,8 @@
  */
 package com.pbo.smartinventorymanagement;
 
+import com.pbo.smartinventorymanagement.Databases.DatabaseConnection;
+
 /**
  *
  * @author Yazid Yusuf
@@ -19,12 +21,6 @@ public class SmartInventoryManagement extends javax.swing.JFrame {
         initComponents();
     }
     // Koneksi database
-private java.sql.Connection getConnection() throws Exception {
-    String url = "jdbc:mysql://localhost:3306/smartinventorymanagement";
-    String user = "root";
-    String password = "";
-    return java.sql.DriverManager.getConnection(url, user, password);
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -119,52 +115,42 @@ private java.sql.Connection getConnection() throws Exception {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-    String email = jTextField1.getText();
-    String password = new String(jPasswordField1.getPassword());
+        String email = jTextField1.getText();
+        String password = new String(jPasswordField1.getPassword());
 
-    if (email.isEmpty() || password.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-            "Email dan Password tidak boleh kosong!",
-            "Peringatan",
-            javax.swing.JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        if (email.isEmpty() || password.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Email dan Password tidak boleh kosong!",
+                "Peringatan",
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-    try {
-        java.sql.Connection conn = getConnection();
-        String query = "SELECT * FROM pengguna WHERE email = ? AND password = ?";
-        java.sql.PreparedStatement ps = conn.prepareStatement(query);
-        ps.setString(1, email);
-        ps.setString(2, password);
-        java.sql.ResultSet rs = ps.executeQuery();
+        try {
+            java.sql.Connection conn = DatabaseConnection.configDB();
+            
+            String query = "SELECT * FROM pengguna WHERE email = ? AND password = ?";
+            java.sql.PreparedStatement ps = conn.prepareStatement(query);
+            
+            ps.setString(1, email);
+            ps.setString(2, password);
+            
+            java.sql.ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                String nama = rs.getString("nama");
+                String role = rs.getString("role");
 
-if (rs.next()) {
-    String role = rs.getString("role");
-    
-    if (role.equals("admin")) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-            "Login berhasil sebagai Admin!",
-            "Sukses",
-            javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        new ListBarang().setVisible(true);
-        this.dispose();
-    } else {
-        javax.swing.JOptionPane.showMessageDialog(this,
-            "Login berhasil sebagai User!",
-            "Sukses",
-            javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        new ListBarang().setVisible(true);
-        this.dispose();
-    }
-}
-        conn.close();
-    } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-            "Koneksi database gagal: " + e.getMessage(),
-            "Error",
-            javax.swing.JOptionPane.ERROR_MESSAGE);
-    }
+                javax.swing.JOptionPane.showMessageDialog(this, "Login berhasil sebagai " + nama + " (" + role + ")!", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
+                new Dashboard(nama, email, role).setVisible(true);
+                this.dispose();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Email atau password salah!", "Gagal Login", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Koneksi database gagal: " + e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
