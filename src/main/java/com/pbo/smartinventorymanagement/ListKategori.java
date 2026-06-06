@@ -81,10 +81,27 @@ public class ListKategori extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Smart Inventory - Data Kategori");
+        setResizable(false);
+        getContentPane().setBackground(new java.awt.Color(240, 242, 245));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        // Style jLabel1 (Title)
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20));
         jLabel1.setText("SMART INVENTORY MANAGEMENT");
+        jLabel1.setForeground(new java.awt.Color(52, 73, 94));
 
+        // Style jTable1
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 12));
+        jTable1.setRowHeight(28);
+        jTable1.setGridColor(new java.awt.Color(236, 240, 241));
+        jTable1.setShowGrid(true);
+        jTable1.setSelectionBackground(new java.awt.Color(52, 152, 219));
+        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTable1.getTableHeader().setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jTable1.getTableHeader().setBackground(new java.awt.Color(41, 128, 185));
+        jTable1.getTableHeader().setForeground(new java.awt.Color(255, 255, 255));
+        jTable1.getTableHeader().setPreferredSize(new java.awt.Dimension(0, 35));
+        
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -102,39 +119,110 @@ public class ListKategori extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(189, 195, 199)));
 
+        // Style Labels
         jLabel6.setText("ID");
-
-        jTextField4.setEditable(false);
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jLabel6.setForeground(new java.awt.Color(52, 73, 94));
 
         jLabel4.setText("Nama Kategori");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jLabel4.setForeground(new java.awt.Color(52, 73, 94));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14));
+        jLabel2.setText("- KATEGORI -");
+        jLabel2.setForeground(new java.awt.Color(41, 128, 185));
+
+        jLabel3.setText("Nama Kategori");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jLabel3.setForeground(new java.awt.Color(52, 73, 94));
+
+        // Style TextFields
+        jTextField4.setEditable(false);
+        jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 13));
+        jTextField4.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+            javax.swing.BorderFactory.createLineBorder(new java.awt.Color(189, 195, 199)),
+            javax.swing.BorderFactory.createEmptyBorder(8, 12, 8, 12)
+        ));
+        jTextField4.setBackground(new java.awt.Color(236, 240, 241));
+
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 13));
+        jTextField2.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+            javax.swing.BorderFactory.createLineBorder(new java.awt.Color(189, 195, 199)),
+            javax.swing.BorderFactory.createEmptyBorder(8, 12, 8, 12)
+        ));
+        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
         jTextField2.addActionListener(this::jTextField2ActionPerformed);
 
+        jTextField1.setName("");
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 13));
+        jTextField1.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+            javax.swing.BorderFactory.createLineBorder(new java.awt.Color(189, 195, 199)),
+            javax.swing.BorderFactory.createEmptyBorder(8, 12, 8, 12)
+        ));
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.addActionListener(this::jTextField1ActionPerformed);
+
+        // Style Buttons
         jButton2.setText("Tambah");
+        jButton2.setBackground(new java.awt.Color(46, 204, 113));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jButton2.setFocusPainted(false);
+        jButton2.setBorderPainted(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setPreferredSize(new java.awt.Dimension(80, 35));
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jButton3.setText("Edit");
+        jButton3.setBackground(new java.awt.Color(241, 196, 15));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jButton3.setFocusPainted(false);
+        jButton3.setBorderPainted(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setPreferredSize(new java.awt.Dimension(80, 35));
         jButton3.addActionListener(this::jButton3ActionPerformed);
 
         jButton4.setText("Hapus");
+        jButton4.setBackground(new java.awt.Color(231, 76, 60));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jButton4.setFocusPainted(false);
+        jButton4.setBorderPainted(false);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setPreferredSize(new java.awt.Dimension(80, 35));
         jButton4.addActionListener(this::jButton4ActionPerformed);
 
         jButton6.setText("Dashboard");
+        jButton6.setBackground(new java.awt.Color(41, 128, 185));
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jButton6.setFocusPainted(false);
+        jButton6.setBorderPainted(false);
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.setPreferredSize(new java.awt.Dimension(100, 35));
         jButton6.addActionListener(this::jButton6ActionPerformed);
 
         jButton5.setText("Clear");
+        jButton5.setBackground(new java.awt.Color(149, 165, 166));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jButton5.setFocusPainted(false);
+        jButton5.setBorderPainted(false);
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.setPreferredSize(new java.awt.Dimension(80, 35));
         jButton5.addActionListener(this::jButton5ActionPerformed);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("- KATEGORI -");
-
-        jLabel3.setText("Nama Kategori");
-
-        jTextField1.setName(""); // NOI18N
-        jTextField1.addActionListener(this::jTextField1ActionPerformed);
-
         jButton7.setText("Search");
+        jButton7.setBackground(new java.awt.Color(52, 73, 94));
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jButton7.setFocusPainted(false);
+        jButton7.setBorderPainted(false);
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.setPreferredSize(new java.awt.Dimension(80, 35));
         jButton7.addActionListener(this::jButton7ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -193,31 +281,32 @@ public class ListKategori extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6))))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -313,7 +402,7 @@ public class ListKategori extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        //<<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
