@@ -41,24 +41,69 @@ public class SmartInventoryManagement extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Smart Inventory Management");
+        setResizable(false);
+        getContentPane().setBackground(new java.awt.Color(240, 242, 245));
 
+        // Style jButton1 (LOGIN)
         jButton1.setText("LOGIN");
+        jButton1.setBackground(new java.awt.Color(41, 128, 185));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12));
+        jButton1.setFocusPainted(false);
+        jButton1.setBorderPainted(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setPreferredSize(new java.awt.Dimension(80, 35));
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        // Style jLabel1 (Title)
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20));
         jLabel1.setText("SMART INVENTORY MANAGEMENT");
+        jLabel1.setForeground(new java.awt.Color(52, 73, 94));
 
-        jTextField1.setName(""); // NOI18N
+        // Style jTextField1 (Email input)
+        jTextField1.setName("");
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 13));
+        jTextField1.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+            javax.swing.BorderFactory.createLineBorder(new java.awt.Color(189, 195, 199)),
+            javax.swing.BorderFactory.createEmptyBorder(8, 12, 8, 12)
+        ));
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
 
+        // Style jLabel2 (Email label)
         jLabel2.setText("Email");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jLabel2.setForeground(new java.awt.Color(52, 73, 94));
 
+        // Style jLabel3 (Password label)
         jLabel3.setText("Password");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jLabel3.setForeground(new java.awt.Color(52, 73, 94));
 
+        // Style jPasswordField1
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 13));
+        jPasswordField1.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+            javax.swing.BorderFactory.createLineBorder(new java.awt.Color(189, 195, 199)),
+            javax.swing.BorderFactory.createEmptyBorder(8, 12, 8, 12)
+        ));
+        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setEchoChar('●');
+
+        // Style jButton2 (QUIT)
         jButton2.setText("QUIT");
+        jButton2.setBackground(new java.awt.Color(231, 76, 60));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12));
+        jButton2.setFocusPainted(false);
+        jButton2.setBorderPainted(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setPreferredSize(new java.awt.Dimension(80, 35));
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        // Style jLabel8 (Subtitle)
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14));
         jLabel8.setText("- LOGIN -");
+        jLabel8.setForeground(new java.awt.Color(41, 128, 185));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,19 +143,20 @@ public class SmartInventoryManagement extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -162,7 +208,7 @@ public class SmartInventoryManagement extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        //<<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
