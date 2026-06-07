@@ -10,4 +10,5 @@ com\pbo\smartinventorymanagement\ListKategori.class
 com\pbo\smartinventorymanagement\ListPengguna$1.class
 com\pbo\smartinventorymanagement\ListKategori$1.class
 com\pbo\smartinventorymanagement\BarangKeluar.class
+com\pbo\smartinventorymanagement\ListBarang$2.class
 com\pbo\smartinventorymanagement\Databases\DatabaseConnection.class
