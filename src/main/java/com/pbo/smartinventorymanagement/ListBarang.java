@@ -17,6 +17,10 @@ import java.io.FileOutputStream;
 import java.io.File;
 import java.io.IOException;
 
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.table.DefaultTableCellRenderer;
+
 /**
  *
  * @author Yazid Yusuf
@@ -35,6 +39,7 @@ public class ListBarang extends javax.swing.JFrame {
         initComponents();
         load_table();
         set_category();
+        setRowColorByStock();
     }
     
     public ListBarang(String nama, String email, String role) {
@@ -47,6 +52,7 @@ public class ListBarang extends javax.swing.JFrame {
         this.role = role;
         
         checkRole(role);
+        setRowColorByStock();
     }
     
     private void checkRole(String role) {
@@ -530,6 +536,41 @@ public class ListBarang extends javax.swing.JFrame {
             }
             jTable1.setModel(model);
         } catch(Exception e) {}
+    }
+    
+    private void setRowColorByStock() {
+        jTable1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(
+                    JTable table, Object value,
+                    boolean isSelected, boolean hasFocus,
+                    int row, int column) {
+
+                Component c = super.getTableCellRendererComponent(
+                        table, value, isSelected, hasFocus, row, column);
+
+                try {
+                    // Kolom stok berada di index 4
+                    int stok = Integer.parseInt(table.getValueAt(row, 4).toString());
+
+                    if (!isSelected) {
+                        if (stok <= 10) {
+                            c.setBackground(Color.RED);
+                            c.setForeground(Color.WHITE);
+                        } else {
+                            c.setBackground(Color.WHITE);
+                            c.setForeground(Color.BLACK);
+                        }
+                    }
+
+                } catch (Exception e) {
+                    c.setBackground(Color.WHITE);
+                    c.setForeground(Color.BLACK);
+                }
+
+                return c;
+            }
+        });
     }
     
     private void exportToExcel() {
